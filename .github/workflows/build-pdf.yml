@@ -1,0 +1,35 @@
+name: Build PDF
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Check crosswalk table is in sync with notes/crosswalk.csv
+        run: python3 scripts/crosswalk_to_latex.py --check
+
+      - name: Compile with latexmk
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: paper
+          latexmk_use_lualatex: false
+          # biblatex-abnt and Portuguese babel ship with the full TeX Live
+          # image used by this action; nothing extra to install.
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-pdf
+          path: paper/build/main.pdf
+          if-no-files-found: error
