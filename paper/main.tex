@@ -1,0 +1,99 @@
+% Main document. Keep this file to preamble + \input of sections so the
+% venue template can be swapped by editing only this file.
+% Current target: Brazilian law journal / CONPEDI (ABNT layout via abnTeX2).
+% See templates/README.md for the SBC (WICS/CSBC) alternative.
+\documentclass[article,12pt,oneside,a4paper,brazilian]{abntex2}
+
+% --- Encoding, fonts ------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --- Tables, floats -------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+
+% --- Bibliography: ABNT author-date via biblatex-abnt ---------------------
+% abnTeX2 + biblatex-abnt are compatible; do NOT load abntex2cite.
+\usepackage[autostyle]{csquotes}
+\usepackage[
+  style=abnt,
+  backend=biber,
+  uniquename=init,
+  giveninits,
+  justify,
+  indent,
+  noslsn,
+]{biblatex}
+\addbibresource{references.bib}
+
+% --- Links ----------------------------------------------------------------
+\usepackage{xcolor}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black,
+}
+
+% --- Draft helpers --------------------------------------------------------
+% \todo{...} prints a visible red marker; redefine as \@gobble before submission.
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{[TODO: #1]}}}
+
+% --- Metadata (abnTeX2 commands) ------------------------------------------
+\titulo{Da eliminação à indistinguibilidade: um padrão técnico-jurídico para o
+  desaprendizado de máquina sob a LGPD e o RGPD}
+% abnTeX2 article mode prints the foreign-language title under the main one.
+\tituloestrangeiro{From erasure to indistinguishability: a technical-legal
+  standard for machine unlearning under the LGPD and the GDPR}
+\autor{\todo{autor(es), afiliação, e-mail}}
+\local{Brasil}
+\data{\today}
+
+\begin{document}
+
+\selectlanguage{brazilian}
+\frenchspacing
+
+\maketitle
+
+\begin{resumo}
+\todo{Resumo em português (150--250 palavras): problema, tese, método, contribuição.}
+
+\vspace{\onelineskip}
+\noindent
+\textbf{Palavras-chave}: desaprendizado de máquina; direito à eliminação; LGPD; anonimização; RGPD.
+\end{resumo}
+
+\begin{resumo}[Abstract]
+\begin{otherlanguage*}{english}
+\todo{Abstract in English.}
+
+\vspace{\onelineskip}
+\noindent
+\textbf{Keywords}: machine unlearning; right to erasure; LGPD; anonymization; GDPR.
+\end{otherlanguage*}
+\end{resumo}
+
+\textual
+
+\input{sections/01-introducao}
+\input{sections/02-fundamentos-tecnicos}
+\input{sections/03-marco-juridico}
+\input{sections/04-quadro-comparativo}
+\input{sections/05-proposta-de-padrao}
+\input{sections/06-objecoes}
+\input{sections/07-recomendacoes}
+\input{sections/08-conclusao}
+
+\postextual
+
+% Draft only: list every .bib entry so unchecked references stay visible.
+% TODO: remover \nocite{*} antes da submissão
+\nocite{*}
+\printbibliography[title={Referências}]
+
+\end{document}

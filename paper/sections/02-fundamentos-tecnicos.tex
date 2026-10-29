@@ -1,0 +1,19 @@
+\section{Fundamentos técnicos do desaprendizado de máquina}
+
+% Objetivo da seção: dar ao leitor jurídico o vocabulário mínimo e ao leitor
+% técnico o mapa das famílias de métodos e das garantias que cada uma oferece.
+
+Esta seção deve explicar o que significa um modelo "conter" dados de treino
+(memorização, inferência de pertinência, extração), apresentar a definição
+formal de desaprendizado exato e aproximado, e percorrer as famílias de
+métodos: retreinamento completo, SISA \parencite{bourtoule2021machine},
+remoção certificada, heurísticas aproximadas e supressão de saídas. Deve
+enfatizar que a garantia de cada família é relativa a um \emph{avaliador}
+(auditor, atacante) e que avaliações frouxas produzem falsa sensação de
+privacidade \parencite{hayes2024inexact}, além dos limites conceituais
+apontados por \textcite{cooper2024unlearning} para modelos generativos.
+
+\todo{Definição formal de $(\varepsilon,\delta)$-desaprendizado e relação com privacidade diferencial.}
+\todo{Ataques de inferência de pertinência como instrumento de verificação.}
+\todo{Benchmarks (TOFU) e por que métricas de utilidade não bastam.}
+\todo{Tabela-resumo das famílias: custo, garantia, verificabilidade.}
